@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Life Map - Command Your Life</title>
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #080A0D; color: #F0F2F5; font-family: Georgia, serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+.launcher { text-align: center; padding: 60px 24px; max-width: 800px; }
+.launcher h1 { font-size: 48px; letter-spacing: 3px; margin-bottom: 12px; background: linear-gradient(90deg, #8B6914, #E8C96A, #C9A84C); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.launcher p { color: #8A95A3; font-size: 18px; margin-bottom: 48px; font-style: italic; }
+.cards { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+.lcard { background: #0F1216; border: 1px solid #1E2329; padding: 36px; width: 340px; cursor: pointer; transition: all 0.3s; text-align: left; }
+.lcard:hover { border-color: #C9A84C55; transform: translateY(-2px); }
+.lcard h2 { font-size: 20px; letter-spacing: 2px; color: #C9A84C; margin-bottom: 8px; }
+.lcard p { font-size: 14px; color: #8A95A3; margin-bottom: 0; font-style: italic; }
+.tag { font-family: monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; padding: 3px 9px; display: inline-block; margin-bottom: 16px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<div id="launcher" class="launcher">
+<h1>LIFE MAP</h1>
+<p>Select an application to launch</p>
+<div class="cards">
+<a href="framework.html" class="lcard" style="text-decoration:none">
+<span class="tag" style="background:#C9A84C22;color:#C9A84C;border:1px solid #C9A84C33">V2 FRAMEWORK</span>
+<h2>LIFE COMMAND FRAMEWORK</h2>
+<p>SaaS licensing, trial system, admin panel, 4-horizon timeline planning</p>
+</a>
+<a href="suite.html" class="lcard" style="text-decoration:none">
+<span class="tag" style="background:#4A8FBF22;color:#4A8FBF;border:1px solid #4A8FBF33">FULL SUITE</span>
+<h2>COMMAND YOUR LIFE SUITE</h2>
+<p>AI coaching, family planning, multi-horizon goals, calendar, onboarding</p>
+</a>
+</div>
+</div>
+</body>
+</html>

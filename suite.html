@@ -12,7 +12,7 @@
 <div id="root"></div>
 <script>
 const {useState, useEffect, useRef, useCallback} = React;
-fetch('CommandYourLifeSuite-2.jsx')
+fetch('CommandYourLifeSuite.jsx')
   .then(r => r.text())
   .then(code => {
     code = code.replace(/^import\s+.*?from\s+['"]react['"];?.*$/gm, '');

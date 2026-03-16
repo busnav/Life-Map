@@ -2,42 +2,1548 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Life Map - Command Your Life</title>
-<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="LifeMap">
+<meta name="application-name" content="LifeMap">
+<meta name="theme-color" content="#5C4230">
+<meta name="description" content="LifeMap — Your family life command center. Goals, milestones, and strategic planning in one beautiful app.">
+<title>LifeMap — Life Command Suite™</title>
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAgACADASIAAhEBAxEB/8QAGQABAAIDAAAAAAAAAAAAAAAABwIGAQMF/8QALRAAAgEDAgQEBQUAAAAAAAAAAQIDBAURACEGEjFBEyJRkQcyYXGhQoGxwdH/xAAZAQACAwEAAAAAAAAAAAAAAAACBgABBAX/xAAeEQACAgMBAAMAAAAAAAAAAAACAwABBBEhMUFhgf/aAAwDAQACEQMRAD8AKeC7VHFBDSwquIwI1bGDsPM2PU9ffTT8OrLQF+eupIJKYDnVpHI5SD8x3wQTgYIP7DqP8E1aiSMy+Uhst2wSOU7H0OmqzypNbYCh+VAhHoQMaW8thCW5wchpJbV3W9XI/EGz0ss8tRRwQ+G4MspEhbxsklmznAwQdgB3+g0OcWW6ONHR0V0x+sZ5kO2CO++myolSCB5pDhUGT/mhvjaqiUMMjCqFY56Y3J/rQ4jCI4CXE5tlr2c+zWmpudx8OhKRzBednZsKANsn3A6fjV5vHEVFYpUo6RnSePAdVUhQOXYEkHmODt179NH9kuzoI7jaqvZ18rruCD1BB/g9CPUalVVE1VUPUVEjSSucsx763Gui4UbH4i3CX38+xBs/E1JfHNFUyu07khE5TgjBOQQAAeu+331Q77a6qhuIjuBjeTAdCjZXG+MfY56jqM/XWqlqJqWoSop5GjlQ5Vh21m6XCerkesr6nmKr5nchQqj8Ad/fUBdBwZSMJaqHnR/J/9k=">
+<link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAQABADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABQEG/8QAJRAAAQIFBAIDAQAAAAAAAAAAAQIDBAURIUEGEhMxB1EAFCJh/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAfEQABAwMFAAAAAAAAAAAAAAACAAExERIhAwQTwfD/2gAMAwEAAhEDEQA/ADfADsPLN0Q0+pmHLexbTd0u0oEJ7oCN1QfQIHZqh5uch5kyIz7K3W22zxNKoOFVQCLe7GveP58zMFqKWSvTbbUvaBjNo3NFJA5MrUci2DXoWxI7UMrmumnWpg0BGbfy0EkjkwtJwL5NaVF8wnAnO6uELYajjx34mO6+lf/Z">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" type="image/png" sizes="192x192" href="data:image/png;base64,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">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { background: #080A0D; color: #F0F2F5; font-family: Georgia, serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-.launcher { text-align: center; padding: 60px 24px; max-width: 800px; }
-.launcher h1 { font-size: 48px; letter-spacing: 3px; margin-bottom: 12px; background: linear-gradient(90deg, #8B6914, #E8C96A, #C9A84C); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.launcher p { color: #8A95A3; font-size: 18px; margin-bottom: 48px; font-style: italic; }
-.cards { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
-.lcard { background: #0F1216; border: 1px solid #1E2329; padding: 36px; width: 340px; cursor: pointer; transition: all 0.3s; text-align: left; }
-.lcard:hover { border-color: #C9A84C55; transform: translateY(-2px); }
-.lcard h2 { font-size: 20px; letter-spacing: 2px; color: #C9A84C; margin-bottom: 8px; }
-.lcard p { font-size: 14px; color: #8A95A3; margin-bottom: 0; font-style: italic; }
-.tag { font-family: monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; padding: 3px 9px; display: inline-block; margin-bottom: 16px; }
+:root {
+  --cream: #FDF8F0;
+  --warm-white: #FFFDF9;
+  --sand: #F5EDD8;
+  --tan: #E8D5B0;
+  --brown-light: #C4A882;
+  --brown: #8B6E4A;
+  --brown-dark: #5C4230;
+  --charcoal: #2D2520;
+  --text: #3D3029;
+  --text-light: #7A6558;
+  --text-muted: #A89080;
+  --blue: #3B7DD8;
+  --blue-light: #EBF2FC;
+  --green: #3AA876;
+  --green-light: #E8F7F1;
+  --gold: #D4A017;
+  --gold-light: #FBF3DC;
+  --red: #D95C5C;
+  --red-light: #FAEAEA;
+  --sidebar-w: 230px;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.14);
+  --transition: 0.2s ease;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
+
+/* ── SCREENS ── */
+.screen { display: none; min-height: 100vh; }
+.screen.active { display: block; }
+
+/* ── LANDING ── */
+#landing {
+  background: linear-gradient(160deg, var(--brown-dark) 0%, var(--brown) 50%, #7A5C38 100%);
+  color: white;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+}
+.landing-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.landing-logo {
+  display: flex; align-items: center; gap: 12px;
+}
+.logo-icon {
+  width: 38px; height: 38px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+}
+.logo-text { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--tan); }
+.logo-sub { font-size: 10px; color: var(--brown-light); display: block; font-family: 'DM Sans'; margin-top: -2px; }
+.nav-btns { display: flex; gap: 10px; }
+.btn-ghost-light {
+  padding: 8px 20px; border-radius: var(--radius-sm);
+  border: 1.5px solid rgba(255,255,255,0.3);
+  background: transparent; color: white;
+  font-family: 'DM Sans'; font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: var(--transition);
+}
+.btn-ghost-light:hover { background: rgba(255,255,255,0.1); }
+.btn-primary-light {
+  padding: 8px 22px; border-radius: var(--radius-sm);
+  background: var(--tan); border: none; color: var(--brown-dark);
+  font-family: 'DM Sans'; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: var(--transition);
+}
+.btn-primary-light:hover { background: white; }
+
+.landing-hero {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 60px 40px 40px;
+}
+.hero-badge {
+  display: inline-block; padding: 5px 16px; border-radius: 20px;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+  font-size: 11px; font-family: 'DM Mono', monospace; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--tan); margin-bottom: 28px;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(44px, 8vw, 80px);
+  line-height: 1.05; color: white; margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+.hero-title em { color: var(--tan); font-style: italic; }
+.hero-subtitle {
+  font-size: 18px; color: rgba(255,255,255,0.75);
+  max-width: 520px; margin: 16px auto 40px;
+  font-weight: 300; line-height: 1.7;
+}
+.hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn-hero-primary {
+  padding: 15px 36px; border-radius: var(--radius);
+  background: var(--tan); border: none; color: var(--brown-dark);
+  font-family: 'DM Sans'; font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: var(--transition);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+.btn-hero-primary:hover { background: white; transform: translateY(-1px); box-shadow: 0 8px 28px rgba(0,0,0,0.25); }
+.btn-hero-ghost {
+  padding: 15px 30px; border-radius: var(--radius);
+  background: transparent; border: 1.5px solid rgba(255,255,255,0.35);
+  color: white; font-family: 'DM Sans'; font-size: 14px; font-weight: 500;
+  cursor: pointer; transition: var(--transition);
+}
+.btn-hero-ghost:hover { background: rgba(255,255,255,0.1); }
+
+.landing-counters {
+  background: rgba(0,0,0,0.2);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex; justify-content: center; gap: 60px;
+  padding: 20px 40px; flex-wrap: wrap;
+}
+.counter-item { text-align: center; }
+.counter-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px; color: var(--tan); line-height: 1;
+}
+.counter-label {
+  font-size: 10px; color: rgba(255,255,255,0.5);
+  font-family: 'DM Mono', monospace; letter-spacing: 1.5px;
+  text-transform: uppercase; margin-top: 4px;
+}
+
+/* Pricing */
+.pricing-section {
+  background: var(--cream); padding: 80px 40px;
+}
+.pricing-header { text-align: center; margin-bottom: 52px; }
+.pricing-header h2 { font-size: 40px; color: var(--brown-dark); margin-bottom: 10px; }
+.pricing-header p { color: var(--text-light); font-size: 17px; }
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 24px; max-width: 1000px; margin: 0 auto;
+}
+.pricing-card {
+  background: white; border-radius: var(--radius);
+  padding: 32px; box-shadow: var(--shadow);
+  border: 2px solid transparent; position: relative;
+  transition: var(--transition);
+}
+.pricing-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.pricing-card.featured { border-color: var(--brown); }
+.featured-badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--brown); color: white; font-size: 11px; font-weight: 600;
+  padding: 4px 16px; border-radius: 20px; white-space: nowrap;
+  font-family: 'DM Sans'; letter-spacing: 0.5px;
+}
+.tier-tag {
+  font-size: 10px; font-family: 'DM Mono', monospace; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-muted);
+  background: var(--sand); padding: 3px 10px; border-radius: 4px;
+  display: inline-block; margin-bottom: 16px;
+}
+.pricing-card h3 { font-size: 22px; color: var(--brown-dark); margin-bottom: 6px; }
+.pricing-card .tier-desc { font-size: 13px; color: var(--text-muted); font-style: italic; margin-bottom: 20px; }
+.price-display { margin-bottom: 20px; }
+.price-strike { text-decoration: line-through; color: var(--text-muted); font-size: 16px; font-family: 'DM Mono', monospace; }
+.price-main { font-family: 'Playfair Display', serif; font-size: 42px; color: var(--brown-dark); }
+.price-free { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--green); }
+.price-avail {
+  background: var(--green-light); border: 1px solid var(--green);
+  border-radius: 6px; padding: 6px 12px; font-size: 11px;
+  color: var(--green); font-family: 'DM Mono'; letter-spacing: 1px;
+  margin-bottom: 18px;
+}
+.feature-list { list-style: none; margin-bottom: 28px; }
+.feature-list li {
+  display: flex; align-items: center; gap: 10px;
+  padding: 7px 0; font-size: 14px; color: var(--text-light);
+  border-bottom: 1px solid var(--sand);
+}
+.feature-list li:last-child { border-bottom: none; }
+.feat-check { color: var(--green); font-size: 15px; flex-shrink: 0; }
+.btn-card-primary {
+  width: 100%; padding: 13px; border-radius: var(--radius-sm);
+  background: var(--brown); border: none; color: white;
+  font-family: 'DM Sans'; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: var(--transition);
+}
+.btn-card-primary:hover { background: var(--brown-dark); }
+.btn-card-ghost {
+  width: 100%; padding: 13px; border-radius: var(--radius-sm);
+  background: transparent; border: 1.5px solid var(--tan); color: var(--brown);
+  font-family: 'DM Sans'; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: var(--transition);
+}
+.btn-card-ghost:hover { background: var(--sand); }
+
+.landing-footer {
+  background: var(--brown-dark); color: var(--brown-light);
+  text-align: center; padding: 32px 40px;
+}
+.landing-footer .footer-logo { font-family: 'Playfair Display'; font-size: 18px; color: var(--tan); margin-bottom: 6px; }
+.landing-footer p { font-size: 12px; color: var(--text-muted); }
+
+/* ── AUTH ── */
+#auth-screen {
+  background: var(--cream);
+  display: flex; align-items: center; justify-content: center;
+  min-height: 100vh; padding: 24px;
+}
+.auth-box {
+  width: 100%; max-width: 420px;
+  background: white; border-radius: var(--radius);
+  box-shadow: var(--shadow-lg); padding: 40px;
+}
+.auth-logo { text-align: center; margin-bottom: 32px; }
+.auth-logo .logo-icon-lg {
+  width: 56px; height: 56px; border-radius: 14px;
+  background: var(--sand); display: flex;
+  align-items: center; justify-content: center;
+  font-size: 28px; margin: 0 auto 14px;
+}
+.auth-logo h2 { font-size: 26px; color: var(--brown-dark); }
+.auth-logo p { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
+.form-group { margin-bottom: 18px; }
+.form-label {
+  display: block; font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.8px;
+  color: var(--text-muted); margin-bottom: 7px;
+  font-family: 'DM Sans';
+}
+.form-input {
+  width: 100%; padding: 12px 14px;
+  border: 1.5px solid var(--tan); border-radius: var(--radius-sm);
+  font-family: 'DM Sans'; font-size: 14px; color: var(--text);
+  background: white; outline: none; transition: border var(--transition);
+}
+.form-input:focus { border-color: var(--brown); }
+.btn-auth {
+  width: 100%; padding: 14px; border-radius: var(--radius-sm);
+  background: var(--brown); border: none; color: white;
+  font-family: 'DM Sans'; font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: var(--transition); margin-top: 8px;
+}
+.btn-auth:hover { background: var(--brown-dark); }
+.auth-divider {
+  border: none; border-top: 1px solid var(--sand);
+  margin: 22px 0;
+}
+.auth-switch { text-align: center; font-size: 14px; color: var(--text-muted); }
+.auth-switch a { color: var(--brown); cursor: pointer; font-weight: 500; text-decoration: none; }
+.auth-switch a:hover { text-decoration: underline; }
+
+/* ── CHECKOUT ── */
+#checkout-screen {
+  background: var(--cream);
+  min-height: 100vh; padding: 60px 24px;
+}
+.checkout-wrap { max-width: 660px; margin: 0 auto; }
+.checkout-header { text-align: center; margin-bottom: 40px; }
+.checkout-header h1 { font-size: 34px; color: var(--brown-dark); }
+.step-indicator {
+  display: flex; justify-content: center; gap: 8px; margin-top: 18px;
+}
+.step-dot {
+  height: 4px; border-radius: 2px;
+  background: var(--tan); transition: all 0.3s;
+}
+.step-dot.active { background: var(--brown); width: 36px; }
+.step-dot.done { background: var(--green); width: 20px; }
+.step-dot.pending { width: 20px; }
+.step-label {
+  font-size: 11px; font-family: 'DM Mono'; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-muted);
+  text-align: center; margin-bottom: 10px;
+}
+
+.tier-option {
+  background: white; border-radius: var(--radius);
+  padding: 22px; margin-bottom: 14px;
+  border: 2px solid var(--tan); cursor: pointer;
+  transition: var(--transition);
+}
+.tier-option:hover { border-color: var(--brown-light); }
+.tier-option.selected { border-color: var(--brown); background: #FEFAF5; }
+.tier-option-inner { display: flex; justify-content: space-between; align-items: center; }
+.tier-option h3 { font-size: 17px; color: var(--brown-dark); margin-bottom: 3px; }
+.tier-option p { font-size: 13px; color: var(--text-muted); font-style: italic; }
+.tier-option .tier-price { font-family: 'Playfair Display'; font-size: 26px; color: var(--brown-dark); }
+.tier-option-badge {
+  font-size: 10px; font-family: 'DM Mono'; letter-spacing: 1px;
+  background: var(--green-light); color: var(--green);
+  padding: 3px 8px; border-radius: 4px; margin-top: 6px;
+  display: inline-block;
+}
+.coupon-row { display: flex; gap: 10px; margin: 20px 0; }
+.coupon-row .form-input { flex: 1; }
+.btn-apply {
+  padding: 12px 20px; border-radius: var(--radius-sm);
+  background: var(--sand); border: 1.5px solid var(--tan);
+  color: var(--brown); font-family: 'DM Sans'; font-size: 13px;
+  font-weight: 600; cursor: pointer; transition: var(--transition);
+  white-space: nowrap;
+}
+.btn-apply:hover { background: var(--tan); }
+.coupon-success { font-size: 12px; color: var(--green); font-weight: 600; margin-bottom: 16px; }
+
+.payment-card {
+  background: white; border-radius: var(--radius);
+  padding: 28px; box-shadow: var(--shadow); margin-bottom: 20px;
+}
+.secure-badge {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11px; color: var(--text-muted);
+  font-family: 'DM Mono'; letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+.order-summary {
+  background: var(--sand); border-radius: var(--radius-sm);
+  padding: 18px; margin-bottom: 22px;
+}
+.order-summary-label {
+  font-size: 10px; font-family: 'DM Mono'; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px;
+}
+.order-row {
+  display: flex; justify-content: space-between;
+  font-size: 14px; margin-bottom: 8px; color: var(--text-light);
+}
+.order-total {
+  display: flex; justify-content: space-between;
+  font-family: 'Playfair Display'; font-size: 20px;
+  color: var(--brown-dark); border-top: 1px solid var(--tan);
+  padding-top: 10px; margin-top: 6px;
+}
+.card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.btn-checkout {
+  width: 100%; padding: 15px; border-radius: var(--radius-sm);
+  background: var(--brown); border: none; color: white;
+  font-family: 'DM Sans'; font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: var(--transition);
+}
+.btn-checkout:hover { background: var(--brown-dark); }
+.btn-checkout:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.confirm-box { text-align: center; padding: 40px 0; }
+.confirm-icon {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: var(--green-light); border: 2px solid var(--green);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px; margin: 0 auto 24px;
+}
+.confirm-box h2 { font-size: 34px; color: var(--brown-dark); margin-bottom: 10px; }
+.confirm-box p { font-size: 16px; color: var(--text-light); margin-bottom: 32px; line-height: 1.7; }
+.btn-enter {
+  padding: 15px 44px; border-radius: var(--radius);
+  background: var(--brown); border: none; color: white;
+  font-family: 'DM Sans'; font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: var(--transition);
+}
+.btn-enter:hover { background: var(--brown-dark); }
+
+/* ── DASHBOARD ── */
+#dashboard-screen { display: flex; height: 100vh; overflow: hidden; }
+
+#sidebar {
+  width: var(--sidebar-w); background: var(--brown-dark);
+  color: var(--cream); display: flex; flex-direction: column;
+  flex-shrink: 0; overflow-y: auto;
+}
+.sidebar-logo {
+  padding: 24px 20px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.sidebar-logo .s-logo-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin-bottom: 10px;
+}
+.sidebar-logo h2 { font-size: 20px; color: var(--tan); }
+.sidebar-logo span { font-size: 11px; color: var(--brown-light); font-family: 'DM Sans'; display: block; margin-top: 2px; }
+.sidebar-user {
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.user-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--brown-light); font-family: 'DM Sans'; }
+.user-name { font-size: 15px; color: var(--cream); font-weight: 600; margin: 3px 0; }
+.user-badge {
+  display: inline-block; padding: 2px 10px; border-radius: 4px;
+  font-size: 10px; font-family: 'DM Mono'; letter-spacing: 1px;
+}
+.badge-suite { background: rgba(196,168,130,0.2); color: var(--tan); border: 1px solid rgba(196,168,130,0.3); }
+.badge-accel { background: rgba(59,125,216,0.2); color: #7EB5F0; border: 1px solid rgba(59,125,216,0.3); }
+.badge-core { background: rgba(255,255,255,0.1); color: var(--brown-light); border: 1px solid rgba(255,255,255,0.15); }
+
+.sidebar-nav { padding: 10px 0; flex: 1; }
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 20px; cursor: pointer;
+  transition: var(--transition); border-left: 3px solid transparent;
+  font-size: 13.5px; color: var(--brown-light); font-weight: 500;
+}
+.nav-item:hover { background: rgba(255,255,255,0.06); color: var(--cream); }
+.nav-item.active { background: rgba(255,255,255,0.1); border-left-color: var(--tan); color: var(--cream); }
+.nav-icon { font-size: 17px; width: 22px; text-align: center; }
+
+.sidebar-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 8px 0;
+}
+.logout-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 20px; cursor: pointer;
+  color: var(--brown-light); font-size: 13px;
+  transition: var(--transition);
+}
+.logout-item:hover { color: var(--red); }
+
+/* Main area */
+#main-area { flex: 1; overflow: hidden; display: flex; flex-direction: column; }
+#topbar {
+  height: 56px; background: var(--warm-white);
+  border-bottom: 1px solid var(--tan);
+  display: flex; align-items: center; padding: 0 28px; gap: 16px; flex-shrink: 0;
+}
+#topbar h3 { font-size: 18px; flex: 1; color: var(--brown-dark); }
+#content { flex: 1; overflow-y: auto; padding: 28px 32px; }
+
+/* ── PANELS ── */
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* ── OVERVIEW ── */
+.stat-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px; margin-bottom: 32px;
+}
+.stat-card {
+  background: white; border-radius: var(--radius);
+  padding: 22px; box-shadow: var(--shadow);
+}
+.stat-label {
+  font-size: 10px; font-family: 'DM Mono'; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px;
+}
+.stat-value { font-family: 'Playfair Display'; font-size: 24px; color: var(--brown-dark); }
+.stat-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+.module-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px; margin-bottom: 32px;
+}
+.module-card {
+  background: white; border-radius: var(--radius);
+  padding: 22px; box-shadow: var(--shadow);
+  cursor: pointer; transition: var(--transition);
+  border: 2px solid transparent;
+}
+.module-card:hover { border-color: var(--brown-light); transform: translateY(-2px); }
+.module-icon { font-size: 28px; margin-bottom: 12px; }
+.module-card h3 { font-size: 17px; color: var(--brown-dark); margin-bottom: 4px; }
+.module-card p { font-size: 12px; color: var(--text-muted); }
+.module-card.locked { opacity: 0.45; cursor: not-allowed; }
+.module-card.locked:hover { border-color: transparent; transform: none; }
+
+.upsell-bar {
+  background: linear-gradient(135deg, #EBF2FC, #DCEEFF);
+  border: 1.5px solid #B8D4F5; border-radius: var(--radius);
+  padding: 22px 26px; margin-bottom: 28px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+}
+.upsell-bar h4 { font-size: 17px; color: var(--blue); margin-bottom: 4px; }
+.upsell-bar p { font-size: 13px; color: var(--text-light); }
+.btn-upsell {
+  padding: 10px 22px; border-radius: var(--radius-sm);
+  background: var(--blue); border: none; color: white;
+  font-family: 'DM Sans'; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: var(--transition); white-space: nowrap;
+}
+.btn-upsell:hover { background: #2A6CC7; }
+
+/* Horizon panel */
+.horizon-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+}
+.horizon-card {
+  background: white; border-radius: var(--radius);
+  padding: 26px; box-shadow: var(--shadow);
+}
+.horizon-label {
+  font-family: 'Playfair Display'; font-size: 28px;
+  color: var(--brown-dark); margin-bottom: 6px;
+}
+.horizon-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 18px; }
+.progress-bar { height: 5px; background: var(--sand); border-radius: 3px; overflow: hidden; margin-bottom: 6px; }
+.progress-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--brown), var(--brown-light)); transition: width 0.6s ease; }
+.progress-pct { font-size: 11px; color: var(--text-muted); font-family: 'DM Mono'; }
+
+/* Strategy panel */
+.strategy-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+}
+.strategy-item {
+  background: white; border-radius: var(--radius);
+  padding: 18px 22px; box-shadow: var(--shadow);
+  display: flex; align-items: center; justify-content: space-between;
+  cursor: pointer; transition: var(--transition);
+}
+.strategy-item:hover { transform: translateX(4px); border-left: 3px solid var(--brown-light); }
+.strategy-item h4 { font-size: 15px; color: var(--brown-dark); font-family: 'DM Sans'; font-weight: 600; }
+.strategy-arrow { color: var(--brown-light); font-size: 18px; }
+
+/* Community panel */
+.community-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+.community-card {
+  background: white; border-radius: var(--radius);
+  padding: 24px; box-shadow: var(--shadow);
+  border-top: 3px solid var(--blue);
+}
+.community-icon { font-size: 28px; margin-bottom: 12px; }
+.community-card h4 { font-size: 16px; color: var(--brown-dark); margin-bottom: 6px; }
+.community-card p { font-size: 13px; color: var(--text-muted); }
+
+/* Settings */
+.settings-card {
+  background: white; border-radius: var(--radius);
+  padding: 30px; box-shadow: var(--shadow); max-width: 480px;
+}
+.settings-card h3 { font-size: 18px; color: var(--brown-dark); margin-bottom: 22px; }
+.btn-save {
+  padding: 12px 28px; border-radius: var(--radius-sm);
+  background: var(--brown); border: none; color: white;
+  font-family: 'DM Sans'; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: var(--transition);
+}
+.btn-save:hover { background: var(--brown-dark); }
+
+/* Admin */
+#admin-screen {
+  background: var(--cream); min-height: 100vh; padding: 40px;
+}
+.admin-wrap { max-width: 1000px; margin: 0 auto; }
+.admin-header {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 36px;
+}
+.admin-header h1 { font-size: 34px; color: var(--brown-dark); }
+.admin-tag {
+  font-size: 10px; font-family: 'DM Mono'; letter-spacing: 2px;
+  color: var(--red); text-transform: uppercase; margin-bottom: 6px;
+}
+.admin-tabs {
+  display: flex; gap: 2px; border-bottom: 2px solid var(--tan); margin-bottom: 28px;
+}
+.admin-tab {
+  padding: 10px 20px; background: none; border: none; cursor: pointer;
+  font-family: 'DM Mono'; font-size: 11px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-muted);
+  border-bottom: 2px solid transparent; margin-bottom: -2px;
+  transition: var(--transition);
+}
+.admin-tab:hover { color: var(--brown); }
+.admin-tab.active { color: var(--brown); border-bottom-color: var(--brown); }
+.admin-panel { display: none; }
+.admin-panel.active { display: block; }
+.admin-card {
+  background: white; border-radius: var(--radius);
+  padding: 26px; box-shadow: var(--shadow); margin-bottom: 20px;
+}
+.admin-label {
+  font-size: 10px; font-family: 'DM Mono'; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px;
+}
+.counter-big { font-family: 'Playfair Display'; font-size: 52px; color: var(--brown-dark); line-height: 1; }
+.counter-sub { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+.admin-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.btn-admin {
+  padding: 10px 18px; border-radius: var(--radius-sm);
+  background: var(--sand); border: 1.5px solid var(--tan);
+  color: var(--brown); font-family: 'DM Sans'; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: var(--transition);
+}
+.btn-admin:hover { background: var(--tan); }
+.btn-admin-danger {
+  padding: 10px 18px; border-radius: var(--radius-sm);
+  background: #FEF2F2; border: 1.5px solid #FECACA;
+  color: var(--red); font-family: 'DM Sans'; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: var(--transition);
+}
+.btn-admin-danger:hover { background: #FEE2E2; }
+.input-row { display: flex; gap: 10px; }
+.input-sm { width: 90px; padding: 10px 12px; border: 1.5px solid var(--tan); border-radius: var(--radius-sm); font-family: 'DM Sans'; font-size: 14px; color: var(--text); outline: none; }
+.input-sm:focus { border-color: var(--brown); }
+
+table { width: 100%; border-collapse: collapse; }
+th {
+  font-family: 'DM Mono'; font-size: 10px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-muted); text-align: left;
+  padding: 10px 14px; border-bottom: 2px solid var(--tan);
+}
+td { padding: 12px 14px; font-size: 14px; color: var(--text-light); border-bottom: 1px solid var(--sand); }
+tr:hover td { background: var(--sand); }
+.t-badge {
+  display: inline-block; padding: 2px 10px; border-radius: 4px;
+  font-family: 'DM Mono'; font-size: 10px; letter-spacing: 1px;
+}
+.t-active { background: var(--green-light); color: var(--green); }
+.t-revoked { background: var(--red-light); color: var(--red); }
+.t-tier { background: var(--gold-light); color: var(--gold); }
+
+.btn-back {
+  padding: 9px 20px; border-radius: var(--radius-sm);
+  border: 1.5px solid var(--tan); background: white;
+  color: var(--text-light); font-family: 'DM Sans'; font-size: 13px;
+  font-weight: 500; cursor: pointer; transition: var(--transition);
+}
+.btn-back:hover { border-color: var(--brown-light); color: var(--brown); }
+
+.admin-float {
+  position: fixed; bottom: 20px; right: 20px; z-index: 999;
+  width: 40px; height: 40px; background: var(--warm-white);
+  border: 1.5px solid var(--tan); border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; opacity: 0.35; transition: opacity var(--transition);
+  font-size: 16px;
+}
+.admin-float:hover { opacity: 0.8; }
+
+/* Utilities */
+.divider { border: none; border-top: 1px solid var(--sand); margin: 20px 0; }
+.mt4 { margin-top: 4px; } .mt8 { margin-top: 8px; } .mt16 { margin-top: 16px; } .mt24 { margin-top: 24px; }
+.mb8 { margin-bottom: 8px; } .mb16 { margin-bottom: 16px; } .mb24 { margin-bottom: 24px; }
+.text-muted { color: var(--text-muted); font-size: 13px; }
+.section-title { font-size: 24px; color: var(--brown-dark); margin-bottom: 6px; }
+.section-sub { font-size: 15px; color: var(--text-muted); font-style: italic; margin-bottom: 28px; }
 </style>
 </head>
 <body>
-<div id="root"></div>
-<div id="launcher" class="launcher">
-<h1>LIFE MAP</h1>
-<p>Select an application to launch</p>
-<div class="cards">
-<a href="framework.html" class="lcard" style="text-decoration:none">
-<span class="tag" style="background:#C9A84C22;color:#C9A84C;border:1px solid #C9A84C33">V2 FRAMEWORK</span>
-<h2>LIFE COMMAND FRAMEWORK</h2>
-<p>SaaS licensing, trial system, admin panel, 4-horizon timeline planning</p>
-</a>
-<a href="suite.html" class="lcard" style="text-decoration:none">
-<span class="tag" style="background:#4A8FBF22;color:#4A8FBF;border:1px solid #4A8FBF33">FULL SUITE</span>
-<h2>COMMAND YOUR LIFE SUITE</h2>
-<p>AI coaching, family planning, multi-horizon goals, calendar, onboarding</p>
-</a>
+
+<!-- ═══════════════════════════════════════════════
+     LANDING
+══════════════════════════════════════════════════ -->
+<div id="landing" class="screen active">
+
+  <!-- NAV -->
+  <nav class="landing-nav">
+    <div class="landing-logo">
+      <div class="logo-icon">🌿</div>
+      <div>
+        <div class="logo-text">LifeMap</div>
+        <span class="logo-sub">Life Command Suite™</span>
+      </div>
+    </div>
+    <div class="nav-btns">
+      <button class="btn-ghost-light" onclick="showScreen('auth-screen','login')">Login</button>
+      <button class="btn-primary-light" onclick="showScreen('auth-screen','register')">Enlist Now</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="landing-hero">
+    <div class="hero-badge">🌿 Founding Access — Limited Allocation</div>
+    <h1 class="hero-title">
+      Map Your<br><em>Life's Command</em>
+    </h1>
+    <p class="hero-subtitle">
+      A family-first planning system built for leaders who refuse to leave their future to chance. Goals, milestones, and strategy — all in one beautiful map.
+    </p>
+    <div class="hero-btns">
+      <button class="btn-hero-primary" onclick="showScreen('auth-screen','register')">Secure Your Position</button>
+      <button class="btn-hero-ghost" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">View Plans</button>
+    </div>
+  </div>
+
+  <!-- COUNTERS -->
+  <div class="landing-counters">
+    <div class="counter-item">
+      <div class="counter-num" id="ctr-suite">100</div>
+      <div class="counter-label">Command Suite Spots</div>
+    </div>
+    <div class="counter-item">
+      <div class="counter-num" id="ctr-accel">75</div>
+      <div class="counter-label">Accelerator Founders</div>
+    </div>
+    <div class="counter-item">
+      <div class="counter-num">4</div>
+      <div class="counter-label">Planning Horizons</div>
+    </div>
+    <div class="counter-item">
+      <div class="counter-num">8+</div>
+      <div class="counter-label">Strategic Domains</div>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="pricing-section" id="pricing">
+    <div class="pricing-header">
+      <h2>Select Your Entry Path</h2>
+      <p>Three tiers. One mission. Your family's future.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <!-- Core -->
+      <div class="pricing-card">
+        <div class="tier-tag">Core Entry</div>
+        <h3>The Discipline Code™</h3>
+        <p class="tier-desc">Digital Edition</p>
+        <div class="price-display">
+          <div class="price-main">$44.99</div>
+        </div>
+        <ul class="feature-list">
+          <li><span class="feat-check">✓</span> Immediate eBook access</li>
+          <li><span class="feat-check">✓</span> Lifetime digital license</li>
+          <li><span class="feat-check">✓</span> Unlocks Command Suite™ (if eligible)</li>
+        </ul>
+        <button class="btn-card-ghost" onclick="showScreen('auth-screen','register')">Acquire Now</button>
+      </div>
+
+      <!-- Suite -->
+      <div class="pricing-card featured">
+        <div class="featured-badge">Most Popular</div>
+        <div class="tier-tag">Bonus Tier</div>
+        <h3>Command Life Suite™</h3>
+        <p class="tier-desc">Free with Core Entry</p>
+        <div class="price-display">
+          <div class="price-strike">$349</div>
+          <div class="price-free">Included Free</div>
+        </div>
+        <div class="price-avail" id="suite-avail">⚡ 100 of 100 Spots Remaining</div>
+        <ul class="feature-list">
+          <li><span class="feat-check">✓</span> Full LifeMap dashboard</li>
+          <li><span class="feat-check">✓</span> 4-Horizon Timeline system</li>
+          <li><span class="feat-check">✓</span> Strategic planning modules</li>
+          <li><span class="feat-check">✓</span> Family milestone tracking</li>
+        </ul>
+        <button class="btn-card-primary" onclick="showScreen('auth-screen','register')">Claim Free Suite</button>
+      </div>
+
+      <!-- Accelerator -->
+      <div class="pricing-card">
+        <div class="tier-tag" style="background:var(--blue-light);color:var(--blue)">Premium Upgrade</div>
+        <h3>Master Coaching Accelerator™</h3>
+        <p class="tier-desc">3-Month Founders Access</p>
+        <div class="price-display">
+          <div class="price-strike">$849</div>
+          <div class="price-main" style="color:var(--blue)">$349</div>
+        </div>
+        <div class="price-avail" id="accel-avail" style="background:var(--blue-light);color:var(--blue);border-color:var(--blue)">⚡ 75 of 75 Founders Spots Left</div>
+        <ul class="feature-list">
+          <li><span class="feat-check">✓</span> Everything in Core + Suite</li>
+          <li><span class="feat-check">✓</span> Monthly book drops</li>
+          <li><span class="feat-check">✓</span> Coaching technique library</li>
+          <li><span class="feat-check">✓</span> Curated professional coaches</li>
+          <li><span class="feat-check">✓</span> Private community portal</li>
+        </ul>
+        <button class="btn-card-ghost" style="border-color:#B8D4F5;color:var(--blue)" onclick="showScreen('auth-screen','register')">Upgrade to Accelerator</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="landing-footer">
+    <div class="footer-logo">LifeMap — Life Command Suite™</div>
+    <p>Empowering Families &amp; Teams to Excel · Your family's compassionate life planning coach 🌿</p>
+  </div>
+
+</div><!-- /landing -->
+
+<!-- ═══════════════════════════════════════════════
+     AUTH
+══════════════════════════════════════════════════ -->
+<div id="auth-screen" class="screen" style="display:none;align-items:center;justify-content:center;">
+  <div class="auth-box">
+    <div class="auth-logo">
+      <div class="logo-icon-lg">🌿</div>
+      <h2 id="auth-title">Access Your Command</h2>
+      <p id="auth-sub">LifeMap — Life Command Suite™</p>
+    </div>
+    <div id="auth-name-group" class="form-group" style="display:none;">
+      <label class="form-label">Full Name</label>
+      <input class="form-input" id="auth-name" placeholder="Your name" />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email Address</label>
+      <input class="form-input" id="auth-email" type="email" placeholder="your@email.com" />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <input class="form-input" id="auth-pass" type="password" placeholder="••••••••" />
+    </div>
+    <button class="btn-auth" id="auth-btn" onclick="handleAuth()">Access Dashboard</button>
+    <hr class="auth-divider">
+    <div class="auth-switch" id="auth-switch">
+      New commander? <a onclick="toggleAuthMode()">Create account</a>
+    </div>
+    <div style="margin-top:14px;text-align:center;">
+      <a style="font-size:13px;color:var(--text-muted);cursor:pointer;" onclick="showScreen('landing')">← Back to LifeMap</a>
+    </div>
+  </div>
 </div>
+
+<!-- ═══════════════════════════════════════════════
+     CHECKOUT
+══════════════════════════════════════════════════ -->
+<div id="checkout-screen" class="screen" style="display:none;">
+  <div class="checkout-wrap">
+    <div class="checkout-header">
+      <div class="step-label" id="checkout-step-label">Step 1 of 3</div>
+      <h1 id="checkout-title">Select Your Path</h1>
+      <div class="step-indicator">
+        <div class="step-dot active" id="sdot1"></div>
+        <div class="step-dot pending" id="sdot2"></div>
+        <div class="step-dot pending" id="sdot3"></div>
+      </div>
+    </div>
+
+    <!-- Step 1: Select Tier -->
+    <div id="co-step1">
+      <div class="tier-option selected" onclick="selectTier('suite',this)" id="to-suite">
+        <div class="tier-option-inner">
+          <div>
+            <h3>Discipline Code™ + Command Suite™</h3>
+            <p>Core + Full LifeMap Dashboard FREE ($349 value)</p>
+            <div class="tier-option-badge">$349 VALUE FREE</div>
+          </div>
+          <div class="tier-price">$44.99</div>
+        </div>
+      </div>
+      <div class="tier-option" onclick="selectTier('core',this)" id="to-core">
+        <div class="tier-option-inner">
+          <div>
+            <h3>The Discipline Code™</h3>
+            <p>Digital Edition — eBook access only</p>
+          </div>
+          <div class="tier-price">$44.99</div>
+        </div>
+      </div>
+      <div class="tier-option" onclick="selectTier('accelerator',this)" id="to-accel">
+        <div class="tier-option-inner">
+          <div>
+            <h3>Full Accelerator Bundle</h3>
+            <p>Core + Suite + Master Coaching Accelerator™</p>
+            <div class="tier-option-badge" style="background:var(--blue-light);color:var(--blue);">Founders Rate: Save $500</div>
+          </div>
+          <div class="tier-price" style="color:var(--blue)">$393.99</div>
+        </div>
+      </div>
+
+      <div class="coupon-row">
+        <input class="form-input" id="coupon-input" placeholder="Coupon or unlock code" />
+        <button class="btn-apply" onclick="applyCoupon()">Apply</button>
+      </div>
+      <div class="coupon-success" id="coupon-msg" style="display:none;">✓ Coupon applied — 10% discount</div>
+
+      <button class="btn-checkout" onclick="coStep(2)">Continue to Payment →</button>
+    </div>
+
+    <!-- Step 2: Payment -->
+    <div id="co-step2" style="display:none;">
+      <div class="payment-card">
+        <div class="secure-badge">🔒 256-BIT ENCRYPTED · SECURE CHECKOUT</div>
+        <div class="form-group">
+          <label class="form-label">Cardholder Name</label>
+          <input class="form-input" id="card-name" placeholder="Name on card" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Card Number</label>
+          <input class="form-input" id="card-num" placeholder="0000 0000 0000 0000" maxlength="19" />
+        </div>
+        <div class="card-grid">
+          <div class="form-group">
+            <label class="form-label">Expiry</label>
+            <input class="form-input" id="card-exp" placeholder="MM / YY" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">CVC</label>
+            <input class="form-input" id="card-cvc" placeholder="•••" maxlength="4" />
+          </div>
+        </div>
+        <div class="order-summary">
+          <div class="order-summary-label">Order Summary</div>
+          <div class="order-row"><span id="order-tier-name">Command Suite Bundle</span><span id="order-base-price">$44.99</span></div>
+          <div class="order-row" id="order-discount-row" style="display:none;color:var(--green)"><span>Coupon discount</span><span>-10%</span></div>
+          <div class="order-total"><span>Total</span><span id="order-total">$44.99</span></div>
+        </div>
+        <button class="btn-checkout" onclick="completePurchase()">Complete Purchase · <span id="pay-btn-total">$44.99</span></button>
+      </div>
+    </div>
+
+    <!-- Step 3: Confirm -->
+    <div id="co-step3" style="display:none;">
+      <div class="confirm-box">
+        <div class="confirm-icon">✓</div>
+        <h2>Access Confirmed</h2>
+        <p>Welcome to LifeMap — Life Command Suite™.<br>A confirmation has been dispatched to your registered address. Your command center is ready.</p>
+        <button class="btn-enter" onclick="enterDashboard()">Enter Your Command Center 🌿</button>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- ═══════════════════════════════════════════════
+     DASHBOARD
+══════════════════════════════════════════════════ -->
+<div id="dashboard-screen" class="screen" style="display:none;height:100vh;overflow:hidden;">
+<div id="sidebar">
+  <div class="sidebar-logo">
+    <div class="s-logo-icon">🌿</div>
+    <h2>LifeMap</h2>
+    <span>Life Command Suite™</span>
+  </div>
+  <div class="sidebar-user">
+    <div class="user-label">Commander</div>
+    <div class="user-name" id="sidebar-name">—</div>
+    <div class="user-badge badge-suite" id="sidebar-badge">COMMAND SUITE</div>
+  </div>
+  <div class="sidebar-nav">
+    <div class="nav-item active" onclick="showPanel('overview',this)"><span class="nav-icon">🏠</span> Command Overview</div>
+    <div class="nav-item" onclick="showPanel('horizon',this)"><span class="nav-icon">📈</span> 4-Horizon Timeline</div>
+    <div class="nav-item" onclick="showPanel('planning',this)"><span class="nav-icon">📋</span> Planning Modules</div>
+    <div class="nav-item" onclick="showPanel('strategy',this)"><span class="nav-icon">🚀</span> Strategic Categories</div>
+    <div class="nav-item" id="nav-community" style="display:none" onclick="showPanel('community',this)"><span class="nav-icon">👥</span> Community Portal</div>
+    <div class="nav-item" onclick="showPanel('settings',this)"><span class="nav-icon">⚙️</span> Account Settings</div>
+  </div>
+  <div class="sidebar-bottom">
+    <div class="logout-item" onclick="logout()"><span>↩</span> Logout</div>
+  </div>
+</div>
+<div id="main-area">
+  <div id="topbar">
+    <h3 id="topbar-title">Command Overview</h3>
+    <div id="topbar-badge" style="display:none;background:var(--blue-light);color:var(--blue);border:1px solid #B8D4F5;padding:5px 12px;border-radius:6px;font-size:11px;font-family:'DM Mono';letter-spacing:1px;">ACCELERATOR · 90 DAYS ACTIVE</div>
+  </div>
+  <div id="content">
+
+    <!-- OVERVIEW PANEL -->
+    <div class="panel active" id="panel-overview">
+      <h1 class="section-title">Welcome to LifeMap</h1>
+      <p class="section-sub">Life Command Suite™ — Empowering Families &amp; Teams to Excel</p>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-label">Access Tier</div>
+          <div class="stat-value" id="stat-tier">Command Suite™</div>
+          <div class="stat-sub">Active</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Command Suite</div>
+          <div class="stat-value" id="stat-suite" style="color:var(--green)">Unlocked</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Accelerator</div>
+          <div class="stat-value" id="stat-accel" style="color:var(--text-muted)">Not Active</div>
+          <div class="stat-sub" id="stat-accel-sub">Upgrade available · 75 spots</div>
+        </div>
+      </div>
+
+      <div class="upsell-bar" id="accel-upsell">
+        <div>
+          <h4>Upgrade to Master Coaching Accelerator™</h4>
+          <p>75 founders spots remaining · <s style="color:var(--text-muted)">$849</s> <strong style="color:var(--blue)">$349</strong></p>
+        </div>
+        <button class="btn-upsell">Upgrade Now</button>
+      </div>
+
+      <h2 style="font-size:20px;color:var(--brown-dark);margin-bottom:16px;">Core Modules</h2>
+      <div class="module-grid">
+        <div class="module-card" onclick="showPanel('horizon',document.querySelector('[onclick*=horizon]'))">
+          <div class="module-icon">📈</div>
+          <h3>4-Horizon Timeline</h3>
+          <p>1 · 3–5 · 10 · 20 Years</p>
+        </div>
+        <div class="module-card" onclick="showPanel('planning',document.querySelector('[onclick*=planning]'))">
+          <div class="module-icon">👤</div>
+          <h3>Individual Planning</h3>
+          <p>Your personal command plan</p>
+        </div>
+        <div class="module-card" onclick="showPanel('planning',document.querySelector('[onclick*=planning]'))">
+          <div class="module-icon">👫</div>
+          <h3>Partner Planning</h3>
+          <p>Build together, grow together</p>
+        </div>
+        <div class="module-card" onclick="showPanel('planning',document.querySelector('[onclick*=planning]'))">
+          <div class="module-icon">👶</div>
+          <h3>Children Planning</h3>
+          <p>Set the next generation up</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- HORIZON PANEL -->
+    <div class="panel" id="panel-horizon">
+      <h1 class="section-title">4-Horizon Timeline</h1>
+      <p class="section-sub">Long-horizon planning for leaders who think generationally</p>
+      <div class="horizon-grid">
+        <div class="horizon-card">
+          <div class="horizon-label">1 Year</div>
+          <div class="horizon-desc">Immediate execution</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:35%"></div></div>
+          <div class="progress-pct">35% Planned</div>
+        </div>
+        <div class="horizon-card">
+          <div class="horizon-label" style="color:var(--blue)">3–5 Years</div>
+          <div class="horizon-desc">Strategic positioning</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:20%;background:linear-gradient(90deg,var(--blue),#7EB5F0)"></div></div>
+          <div class="progress-pct">20% Planned</div>
+        </div>
+        <div class="horizon-card">
+          <div class="horizon-label" style="color:var(--text-light)">10 Years</div>
+          <div class="horizon-desc">Legacy foundations</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:5%"></div></div>
+          <div class="progress-pct">5% Planned</div>
+        </div>
+        <div class="horizon-card">
+          <div class="horizon-label" style="color:var(--text-muted)">20 Years</div>
+          <div class="horizon-desc">Generational vision</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:2%"></div></div>
+          <div class="progress-pct">2% Planned</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLANNING PANEL -->
+    <div class="panel" id="panel-planning">
+      <h1 class="section-title">Planning Modules</h1>
+      <p class="section-sub">Your personal command structure</p>
+      <div class="module-grid">
+        <div class="module-card">
+          <div class="module-icon">📈</div>
+          <h3>4-Horizon Timeline</h3>
+          <p>1 · 3–5 · 10 · 20 Year planning</p>
+        </div>
+        <div class="module-card">
+          <div class="module-icon">👤</div>
+          <h3>Individual Planning</h3>
+          <p>Your personal command plan</p>
+        </div>
+        <div class="module-card">
+          <div class="module-icon">👫</div>
+          <h3>Partner Planning</h3>
+          <p>Build together, grow together</p>
+        </div>
+        <div class="module-card">
+          <div class="module-icon">👶</div>
+          <h3>Children Planning</h3>
+          <p>Set the next generation up</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STRATEGY PANEL -->
+    <div class="panel" id="panel-strategy">
+      <h1 class="section-title">Strategic Categories</h1>
+      <p class="section-sub">Your full planning command structure</p>
+      <div class="strategy-grid">
+        <div class="strategy-item"><h4>📚 Education &amp; Graduate Planning</h4><span class="strategy-arrow">›</span></div>
+        <div class="strategy-item"><h4>💼 Career &amp; Federal Pathways</h4><span class="strategy-arrow">›</span></div>
+        <div class="strategy-item"><h4>🤖 Certifications &amp; AI Skills</h4><span class="strategy-arrow">›</span></div>
+        <div class="strategy-item"><h4>🏡 Real Estate &amp; Investment Planning</h4><span class="strategy-arrow">›</span></div>
+        <div class="strategy-item"><h4>🛡️ Insurance &amp; Risk Protection</h4><span class="strategy-arrow">›</span></div>
+        <div class="strategy-item"><h4>💡 Side Hustle Planning</h4><span class="strategy-arrow">›</span></div>
+        <div class="strategy-item"><h4>🎯 Hobby Monetization</h4><span class="strategy-arrow">›</span></div>
+        <div class="strategy-item"><h4>🎉 Family Milestones</h4><span class="strategy-arrow">›</span></div>
+      </div>
+    </div>
+
+    <!-- COMMUNITY PANEL -->
+    <div class="panel" id="panel-community">
+      <h1 class="section-title">Community Portal</h1>
+      <p class="section-sub">Master Coaching Accelerator™ — Exclusive Access</p>
+      <div class="community-grid">
+        <div class="community-card">
+          <div class="community-icon">📖</div>
+          <h4>Coaching Library</h4>
+          <p>Curated coaching techniques and frameworks</p>
+        </div>
+        <div class="community-card">
+          <div class="community-icon">🚀</div>
+          <h4>Monthly Strategy Drops</h4>
+          <p>Monthly book drops and leadership insights</p>
+        </div>
+        <div class="community-card">
+          <div class="community-icon">👥</div>
+          <h4>Professional Coaches</h4>
+          <p>Access to vetted leadership coaches</p>
+        </div>
+        <div class="community-card">
+          <div class="community-icon">📅</div>
+          <h4>Event Access</h4>
+          <p>Exclusive events and live sessions</p>
+        </div>
+      </div>
+      <div style="margin-top:24px;background:var(--blue-light);border:1.5px solid #B8D4F5;border-radius:var(--radius);padding:20px;">
+        <div style="font-size:10px;font-family:'DM Mono';letter-spacing:1.5px;color:var(--blue);text-transform:uppercase;margin-bottom:6px;">Access Window</div>
+        <p style="font-size:15px;color:var(--text-light);">90-day access active · Renewal available at month 3</p>
+      </div>
+    </div>
+
+    <!-- SETTINGS PANEL -->
+    <div class="panel" id="panel-settings">
+      <h1 class="section-title">Account Settings</h1>
+      <p class="section-sub mb24">Manage your LifeMap profile</p>
+      <div class="settings-card">
+        <h3>Profile</h3>
+        <div class="form-group">
+          <label class="form-label">Name</label>
+          <input class="form-input" id="settings-name" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" id="settings-email" />
+        </div>
+        <button class="btn-save">Save Changes</button>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main-area -->
+</div><!-- /dashboard -->
+
+<!-- ═══════════════════════════════════════════════
+     ADMIN
+══════════════════════════════════════════════════ -->
+<div id="admin-screen" class="screen" style="display:none;min-height:100vh;">
+<div class="admin-wrap">
+  <div class="admin-header">
+    <div>
+      <div class="admin-tag">⬛ Admin Access</div>
+      <h1>LifeMap Command Control</h1>
+    </div>
+    <button class="btn-back" onclick="showScreen('landing')">← Back to Site</button>
+  </div>
+
+  <div class="admin-tabs">
+    <button class="admin-tab active" onclick="showAdminTab('counters',this)">Counters</button>
+    <button class="admin-tab" onclick="showAdminTab('coupons',this)">Coupons</button>
+    <button class="admin-tab" onclick="showAdminTab('codes',this)">Codes</button>
+    <button class="admin-tab" onclick="showAdminTab('users',this)">Users</button>
+    <button class="admin-tab" onclick="showAdminTab('revoke',this)">Revoke</button>
+  </div>
+
+  <!-- Counters -->
+  <div class="admin-panel active" id="ap-counters">
+    <div class="admin-grid2">
+      <div class="admin-card">
+        <div class="admin-label">Command Suite Remaining</div>
+        <div class="counter-big" id="adm-suite-count">100</div>
+        <div class="counter-sub">of 100 total allocation</div>
+        <div class="progress-bar" style="margin-top:16px"><div class="progress-fill" id="adm-suite-bar" style="width:100%"></div></div>
+      </div>
+      <div class="admin-card">
+        <div class="admin-label">Accelerator Remaining</div>
+        <div class="counter-big" id="adm-accel-count" style="color:var(--blue)">75</div>
+        <div class="counter-sub">of 75 founders allocation</div>
+        <div class="progress-bar" style="margin-top:16px"><div class="progress-fill" id="adm-accel-bar" style="width:100%;background:linear-gradient(90deg,var(--blue),#7EB5F0)"></div></div>
+      </div>
+    </div>
+    <div class="admin-card">
+      <div class="admin-label">Manual Override</div>
+      <div class="admin-grid2">
+        <div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">Suite Count</div>
+          <div class="input-row">
+            <input type="number" class="input-sm form-input" id="override-suite" value="100" min="0" max="100" />
+            <button class="btn-admin" onclick="setCounter('suite')">Set</button>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">Accelerator Count</div>
+          <div class="input-row">
+            <input type="number" class="input-sm form-input" id="override-accel" value="75" min="0" max="75" />
+            <button class="btn-admin" onclick="setCounter('accel')">Set</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Coupons -->
+  <div class="admin-panel" id="ap-coupons">
+    <div class="admin-card">
+      <div class="admin-label">Generate Coupon Code</div>
+      <div class="input-row" style="margin-bottom:0">
+        <input class="form-input" id="new-coupon" placeholder="e.g. LIFEMAP25" style="text-transform:uppercase" />
+        <button class="btn-admin" onclick="addCoupon()">Add Code</button>
+      </div>
+    </div>
+    <div class="admin-card" style="padding:0;overflow:hidden">
+      <table>
+        <thead><tr><th>Code</th><th>Status</th><th>Remove</th></tr></thead>
+        <tbody id="coupon-table">
+          <tr><td style="font-family:'DM Mono';color:var(--brown)">LIFEMAP10</td><td><span class="t-badge t-active">ACTIVE</span></td><td><button onclick="removeCoupon(this)" style="background:none;border:none;cursor:pointer;color:var(--red);font-size:16px;">×</button></td></tr>
+          <tr><td style="font-family:'DM Mono';color:var(--brown)">DISCIPLINE20</td><td><span class="t-badge t-active">ACTIVE</span></td><td><button onclick="removeCoupon(this)" style="background:none;border:none;cursor:pointer;color:var(--red);font-size:16px;">×</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Codes -->
+  <div class="admin-panel" id="ap-codes">
+    <div class="admin-card">
+      <div class="admin-label">Generate Book Unlock Code</div>
+      <div class="input-row">
+        <input class="form-input" id="generated-code" placeholder="Click Generate..." readonly />
+        <button class="btn-admin" onclick="generateCode()">Generate</button>
+      </div>
+    </div>
+    <div class="admin-card">
+      <p class="text-muted">Book unlock codes grant access to The Discipline Code™ eBook without payment. Use for comps, press copies, and partner distribution.</p>
+    </div>
+  </div>
+
+  <!-- Users -->
+  <div class="admin-panel" id="ap-users">
+    <div class="admin-card" style="padding:0;overflow:hidden">
+      <table>
+        <thead><tr><th>User</th><th>Tier</th><th>Join Date</th><th>Status</th></tr></thead>
+        <tbody id="users-table">
+          <tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:40px;font-style:italic;">No users registered yet</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Revoke -->
+  <div class="admin-panel" id="ap-revoke">
+    <div class="admin-card" style="border:1.5px solid var(--red-light)">
+      <div class="admin-label" style="color:var(--red)">Access Revocation</div>
+      <p class="text-muted mb16">Revoke a user's access by email address. This immediately locks their dashboard.</p>
+      <div class="input-row">
+        <input class="form-input" id="revoke-email" placeholder="user@email.com" />
+        <button class="btn-admin-danger" onclick="revokeUser()">Revoke Access</button>
+      </div>
+      <div id="revoked-list" style="margin-top:20px;"></div>
+    </div>
+    <div class="admin-card" style="border-color:var(--tan)">
+      <div class="admin-label">Future Infrastructure (Reserved)</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
+        <div style="padding:10px 14px;background:var(--sand);border-radius:6px;font-size:12px;color:var(--text-muted);font-family:'DM Mono';letter-spacing:0.8px;">MENTOR ACCOUNTS</div>
+        <div style="padding:10px 14px;background:var(--sand);border-radius:6px;font-size:12px;color:var(--text-muted);font-family:'DM Mono';letter-spacing:0.8px;">FAMILY-LINKED DASHBOARDS</div>
+        <div style="padding:10px 14px;background:var(--sand);border-radius:6px;font-size:12px;color:var(--text-muted);font-family:'DM Mono';letter-spacing:0.8px;">TEAM-LEVEL ACCOUNTS</div>
+        <div style="padding:10px 14px;background:var(--sand);border-radius:6px;font-size:12px;color:var(--text-muted);font-family:'DM Mono';letter-spacing:0.8px;">CERTIFICATION PATHWAY</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /admin-wrap -->
+</div><!-- /admin -->
+
+<!-- Admin float button -->
+<div class="admin-float" id="admin-float" onclick="showScreen('admin-screen')" title="Admin Panel">⚙</div>
+
+<!-- ═══════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════ -->
+<script>
+// ── STATE ──
+const state = {
+  suiteRemaining: 100,
+  accelRemaining: 75,
+  coupons: ['LIFEMAP10','DISCIPLINE20'],
+  revokedUsers: [],
+  users: [],
+  currentUser: null,
+  currentTier: null,
+  couponApplied: false,
+  selectedTier: 'suite',
+  authMode: 'login'
+};
+
+const TIER_PRICES = { core: 44.99, suite: 44.99, accelerator: 393.99 };
+const TIER_NAMES = {
+  core: 'The Discipline Code™',
+  suite: 'Discipline Code™ + Command Suite™',
+  accelerator: 'Full Accelerator Bundle'
+};
+
+// ── SCREEN MANAGEMENT ──
+function showScreen(id, sub) {
+  document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (id === 'dashboard-screen') {
+    el.style.display = 'flex';
+    updateDashboard();
+  } else if (id === 'auth-screen') {
+    el.style.display = 'flex';
+    if (sub) { state.authMode = sub; updateAuthUI(); }
+  } else {
+    el.style.display = 'block';
+  }
+  // Show/hide admin float
+  const af = document.getElementById('admin-float');
+  if (af) af.style.display = (id === 'admin-screen') ? 'none' : 'flex';
+}
+
+// ── AUTH ──
+let authIsRegister = false;
+function toggleAuthMode() {
+  authIsRegister = !authIsRegister;
+  updateAuthUI();
+}
+function updateAuthUI() {
+  authIsRegister = (state.authMode === 'register');
+  document.getElementById('auth-title').textContent = authIsRegister ? 'Create Your Command' : 'Access Your Command';
+  document.getElementById('auth-btn').textContent = authIsRegister ? 'Create Account & Continue' : 'Access Dashboard';
+  document.getElementById('auth-name-group').style.display = authIsRegister ? 'block' : 'none';
+  document.getElementById('auth-switch').innerHTML = authIsRegister
+    ? 'Already have access? <a onclick="toggleAuthMode()">Sign in</a>'
+    : 'New commander? <a onclick="toggleAuthMode()">Create account</a>';
+}
+function handleAuth() {
+  const email = document.getElementById('auth-email').value || 'commander@lifemap.io';
+  const name = document.getElementById('auth-name').value || email.split('@')[0];
+  state.currentUser = { name, email };
+  if (state.currentTier) {
+    showScreen('dashboard-screen');
+  } else {
+    showScreen('checkout-screen');
+  }
+}
+
+// ── CHECKOUT ──
+function selectTier(tier, el) {
+  state.selectedTier = tier;
+  document.querySelectorAll('.tier-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  updateOrderSummary();
+}
+function applyCoupon() {
+  const val = document.getElementById('coupon-input').value.toUpperCase();
+  if (state.coupons.includes(val)) {
+    state.couponApplied = true;
+    document.getElementById('coupon-msg').style.display = 'block';
+    updateOrderSummary();
+  }
+}
+function updateOrderSummary() {
+  const base = TIER_PRICES[state.selectedTier];
+  const final = state.couponApplied ? +(base * 0.9).toFixed(2) : base;
+  const name = TIER_NAMES[state.selectedTier];
+  document.getElementById('order-tier-name').textContent = name;
+  document.getElementById('order-base-price').textContent = '$' + base.toFixed(2);
+  document.getElementById('order-discount-row').style.display = state.couponApplied ? 'flex' : 'none';
+  document.getElementById('order-total').textContent = '$' + final.toFixed(2);
+  document.getElementById('pay-btn-total').textContent = '$' + final.toFixed(2);
+}
+function coStep(n) {
+  document.getElementById('co-step1').style.display = 'none';
+  document.getElementById('co-step2').style.display = 'none';
+  document.getElementById('co-step3').style.display = 'none';
+  document.getElementById('co-step' + n).style.display = 'block';
+  const labels = ['Step 1 of 3','Step 2 of 3','Step 3 of 3'];
+  const titles = ['Select Your Path','Secure Payment','Access Unlocked'];
+  document.getElementById('checkout-step-label').textContent = labels[n-1];
+  document.getElementById('checkout-title').textContent = titles[n-1];
+  ['sdot1','sdot2','sdot3'].forEach((id,i) => {
+    const d = document.getElementById(id);
+    d.className = 'step-dot ' + (i+1 < n ? 'done' : i+1 === n ? 'active' : 'pending');
+  });
+  updateOrderSummary();
+}
+function completePurchase() {
+  state.currentTier = state.selectedTier;
+  if (state.selectedTier === 'suite' || state.selectedTier === 'accelerator') {
+    state.suiteRemaining = Math.max(0, state.suiteRemaining - 1);
+  }
+  if (state.selectedTier === 'accelerator') {
+    state.accelRemaining = Math.max(0, state.accelRemaining - 1);
+  }
+  if (state.currentUser) {
+    state.users.push({ ...state.currentUser, tier: state.selectedTier, date: new Date().toLocaleDateString() });
+  }
+  updateCounters();
+  coStep(3);
+}
+function enterDashboard() {
+  showScreen('dashboard-screen');
+}
+
+// ── DASHBOARD ──
+function updateDashboard() {
+  const u = state.currentUser;
+  const t = state.currentTier;
+  const hasSuite = t === 'suite' || t === 'accelerator';
+  const hasAccel = t === 'accelerator';
+
+  document.getElementById('sidebar-name').textContent = u?.name || '—';
+  const badge = document.getElementById('sidebar-badge');
+  badge.textContent = hasAccel ? 'ACCELERATOR' : hasSuite ? 'COMMAND SUITE' : 'CORE';
+  badge.className = 'user-badge ' + (hasAccel ? 'badge-accel' : hasSuite ? 'badge-suite' : 'badge-core');
+
+  document.getElementById('stat-tier').textContent = hasAccel ? 'Master Accelerator™' : hasSuite ? 'Command Suite™' : 'Discipline Code™';
+  document.getElementById('stat-suite').textContent = hasSuite ? 'Unlocked' : 'Not Active';
+  document.getElementById('stat-suite').style.color = hasSuite ? 'var(--green)' : 'var(--text-muted)';
+  document.getElementById('stat-accel').textContent = hasAccel ? 'Active · 90 Days' : state.accelRemaining > 0 ? 'Upgrade Available' : 'Allocation Closed';
+  document.getElementById('stat-accel').style.color = hasAccel ? 'var(--blue)' : 'var(--text-muted)';
+  document.getElementById('stat-accel-sub').textContent = hasAccel ? '' : `${state.accelRemaining} spots at $349`;
+
+  document.getElementById('accel-upsell').style.display = hasAccel ? 'none' : 'flex';
+  document.getElementById('nav-community').style.display = hasAccel ? 'flex' : 'none';
+  document.getElementById('topbar-badge').style.display = hasAccel ? 'block' : 'none';
+
+  document.getElementById('settings-name').value = u?.name || '';
+  document.getElementById('settings-email').value = u?.email || '';
+}
+
+function showPanel(id, navEl) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (navEl) navEl.classList.add('active');
+  const titles = {
+    overview: 'Command Overview',
+    horizon: '4-Horizon Timeline',
+    planning: 'Planning Modules',
+    strategy: 'Strategic Categories',
+    community: 'Community Portal',
+    settings: 'Account Settings'
+  };
+  document.getElementById('topbar-title').textContent = titles[id] || '';
+}
+
+function logout() {
+  state.currentUser = null;
+  state.currentTier = null;
+  state.couponApplied = false;
+  showScreen('landing');
+}
+
+// ── ADMIN ──
+function showAdminTab(id, el) {
+  document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('ap-' + id).classList.add('active');
+  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  if (id === 'users') renderUsersTable();
+}
+function setCounter(which) {
+  if (which === 'suite') {
+    state.suiteRemaining = parseInt(document.getElementById('override-suite').value) || 0;
+  } else {
+    state.accelRemaining = parseInt(document.getElementById('override-accel').value) || 0;
+  }
+  updateCounters();
+}
+function updateCounters() {
+  document.getElementById('adm-suite-count').textContent = state.suiteRemaining;
+  document.getElementById('adm-accel-count').textContent = state.accelRemaining;
+  document.getElementById('adm-suite-bar').style.width = (state.suiteRemaining/100*100) + '%';
+  document.getElementById('adm-accel-bar').style.width = (state.accelRemaining/75*100) + '%';
+  document.getElementById('ctr-suite').textContent = state.suiteRemaining;
+  document.getElementById('ctr-accel').textContent = state.accelRemaining;
+  document.getElementById('suite-avail').textContent = `⚡ ${state.suiteRemaining} of 100 Spots Remaining`;
+  document.getElementById('accel-avail').textContent = `⚡ ${state.accelRemaining} of 75 Founders Spots Left`;
+}
+function addCoupon() {
+  const val = document.getElementById('new-coupon').value.toUpperCase().trim();
+  if (!val) return;
+  state.coupons.push(val);
+  const tbody = document.getElementById('coupon-table');
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td style="font-family:'DM Mono';color:var(--brown)">${val}</td><td><span class="t-badge t-active">ACTIVE</span></td><td><button onclick="removeCoupon(this)" style="background:none;border:none;cursor:pointer;color:var(--red);font-size:16px;">×</button></td>`;
+  tbody.appendChild(tr);
+  document.getElementById('new-coupon').value = '';
+}
+function removeCoupon(btn) {
+  const row = btn.closest('tr');
+  const code = row.querySelector('td').textContent;
+  state.coupons = state.coupons.filter(c => c !== code);
+  row.remove();
+}
+function generateCode() {
+  const code = 'BOOK-' + Math.random().toString(36).toUpperCase().slice(2,8);
+  document.getElementById('generated-code').value = code;
+}
+function revokeUser() {
+  const email = document.getElementById('revoke-email').value.trim();
+  if (!email || state.revokedUsers.includes(email)) return;
+  state.revokedUsers.push(email);
+  const list = document.getElementById('revoked-list');
+  const div = document.createElement('div');
+  div.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--sand)';
+  div.innerHTML = `<span style="font-family:'DM Mono';font-size:13px;color:var(--red)">${email}</span><button onclick="restoreUser('${email}',this.parentNode)" style="background:none;border:1.5px solid var(--tan);color:var(--text-muted);padding:4px 12px;border-radius:6px;cursor:pointer;font-size:11px;font-family:'DM Sans'">Restore</button>`;
+  list.appendChild(div);
+  document.getElementById('revoke-email').value = '';
+  renderUsersTable();
+}
+function restoreUser(email, el) {
+  state.revokedUsers = state.revokedUsers.filter(r => r !== email);
+  el.remove();
+  renderUsersTable();
+}
+function renderUsersTable() {
+  const tbody = document.getElementById('users-table');
+  if (state.users.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:40px;font-style:italic;">No users registered yet</td></tr>';
+    return;
+  }
+  tbody.innerHTML = state.users.map(u => `
+    <tr>
+      <td>${u.email}</td>
+      <td><span class="t-badge t-tier">${(u.tier||'core').toUpperCase()}</span></td>
+      <td style="font-family:'DM Mono';font-size:12px">${u.date}</td>
+      <td><span class="t-badge ${state.revokedUsers.includes(u.email)?'t-revoked':'t-active'}">${state.revokedUsers.includes(u.email)?'REVOKED':'ACTIVE'}</span></td>
+    </tr>`).join('');
+}
+
+// Init
+updateCounters();
+</script>
 </body>
 </html>
